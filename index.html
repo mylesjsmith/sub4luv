@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sub4luv</title>
+<style>
+  :root{
+    --pink:#ff2d78;
+    --black:#111111;
+    --gray:#666666;
+    --line:#e6e6e6;
+    --bg:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--black);
+    background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 32px;}
+
+  /* Header */
+  header{
+    border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20px 0;
+  }
+  .logo{font-size:19px;font-weight:700;letter-spacing:-0.02em;}
+  .logo span{color:var(--pink);}
+  .nav-links{
+    display:flex;
+    gap:36px;
+    align-items:center;
+    font-size:14px;
+    color:var(--black);
+  }
+  .nav-links a{opacity:0.85;}
+  .nav-links a:hover{opacity:1;}
+  .nav-links .give{
+    text-decoration:underline;
+    font-weight:500;
+  }
+  .nav-links .insta-link{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-weight:600;
+    color:var(--pink);
+  }
+  .nav-links .insta-link::before{
+    content:"";
+    width:16px;
+    height:16px;
+    border:1.5px solid var(--pink);
+    border-radius:5px;
+    display:inline-block;
+  }
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:none;
+    font-size:24px;
+    line-height:1;
+    cursor:pointer;
+    color:var(--black);
+    padding:6px;
+  }
+
+  /* Mission */
+  .mission{padding:72px 0 40px;}
+  .mission h1{
+    font-size:42px;
+    font-weight:800;
+    letter-spacing:-0.02em;
+    margin:0 0 24px;
+  }
+  .mission p{
+    font-size:16px;
+    line-height:1.65;
+    color:#333;
+    max-width:620px;
+    margin:0 0 18px;
+  }
+  .cta-row{display:flex;align-items:center;gap:24px;margin-top:28px;flex-wrap:wrap;}
+  .btn{
+    background:var(--black);
+    color:#fff;
+    border:none;
+    padding:14px 22px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    border-radius:2px;
+  }
+  .btn:hover{background:#000;}
+  .link-underline{
+    font-size:14px;
+    text-decoration:underline;
+    font-weight:500;
+  }
+
+  hr.divider{border:none;border-top:1px solid var(--line);margin:0;}
+
+  /* Stat box */
+  .stat-section{padding:56px 0;}
+  .stat-box{
+    border:1px solid var(--black);
+    padding:36px 40px 30px;
+  }
+  .stat-box-top{
+    display:flex;
+    justify-content:flex-end;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .stat-big{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:16px;
+  }
+  .stat-big .num{font-size:56px;font-weight:800;letter-spacing:-0.02em;}
+  .stat-big .label{font-size:15px;color:var(--gray);}
+  .stat-box p.desc{
+    font-size:14.5px;
+    color:#444;
+    line-height:1.6;
+    max-width:600px;
+    margin:0 0 24px;
+  }
+  .stat-rows{border-top:1px solid var(--line);}
+  .stat-row{
+    display:flex;
+    justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .stat-row span:first-child{color:#444;}
+  .stat-row span:last-child{font-weight:700;}
+  .stat-row.total{
+    border-bottom:none;
+    padding-top:16px;
+    font-size:15px;
+  }
+  .stat-row.total span:first-child{font-weight:600;color:var(--black);}
+  .stat-row.total span:last-child{color:var(--pink);font-size:19px;font-weight:800;}
+
+  .slider-block{margin-top:6px;}
+  .slider-readout{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:6px;
+    flex-wrap:wrap;
+  }
+  .slider-readout .amount{font-size:56px;font-weight:800;letter-spacing:0.01em;color:var(--pink);}
+  .slider-readout .label{font-size:15px;color:var(--gray);}
+  .slider-sub{font-size:14px;color:#444;margin-bottom:26px;}
+  .slider-sub strong{color:var(--black);}
+  input[type="range"].subs-slider{
+    -webkit-appearance:none;
+    width:100%;
+    height:4px;
+    border-radius:2px;
+    background:var(--line);
+    outline:none;
+    margin:10px 0 8px;
+  }
+  input[type="range"].subs-slider::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:var(--pink);
+    cursor:pointer;
+    border:3px solid #fff;
+    box-shadow:0 0 0 1px var(--pink);
+  }
+  input[type="range"].subs-slider::-moz-range-thumb{
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:var(--pink);
+    cursor:pointer;
+    border:3px solid #fff;
+    box-shadow:0 0 0 1px var(--pink);
+  }
+  .slider-scale{
+    display:flex;
+    justify-content:space-between;
+    font-size:12.5px;
+    color:var(--gray);
+    margin-bottom:22px;
+  }
+  .slider-note{
+    font-size:14.5px;
+    color:#444;
+    line-height:1.6;
+    max-width:600px;
+    border-top:1px solid var(--line);
+    padding-top:20px;
+  }
+  .slider-note span{font-weight:700;color:var(--black);}
+
+  /* Full picture / heart */
+  .picture-section{padding:64px 0 40px;text-align:left;}
+  .picture-eyebrow{font-size:13px;color:var(--gray);margin-bottom:6px;}
+  .picture-title{font-size:32px;font-weight:800;letter-spacing:-0.02em;margin:0 0 40px;}
+  .picture-title .accent{color:var(--pink);font-weight:800;}
+  .heart-wrap{display:flex;flex-direction:column;align-items:center;}
+  #heart-svg{width:100%;max-width:640px;height:auto;}
+  .heart-caption{
+    font-size:14px;
+    color:#444;
+    line-height:1.6;
+    text-align:center;
+    max-width:420px;
+    margin:28px auto 0;
+  }
+
+  /* How it works */
+  .how-section{padding:72px 0 40px;}
+  .how-section h2{font-size:30px;font-weight:800;letter-spacing:-0.02em;margin:0 0 12px;}
+  .how-section > .wrap > p{font-size:15px;color:#444;max-width:520px;line-height:1.6;margin:0 0 36px;}
+  .how-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:48px;
+    align-items:start;
+  }
+  .step{margin-bottom:30px;}
+  .step h3{font-size:16px;font-weight:700;margin:0 0 8px;}
+  .step p{font-size:14.5px;color:#444;line-height:1.6;margin:0 0 14px;}
+  .step .btn{padding:12px 18px;font-size:13.5px;}
+  .video-box{
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+    background:#111;
+    position:relative;
+  }
+  .video-box .walkthrough-video{
+    width:100%;
+    display:block;
+    aspect-ratio:9/16;
+    object-fit:cover;
+    background:#000;
+  }
+  .video-caption{
+    text-align:center;
+    font-size:12.5px;
+    color:var(--gray);
+    margin-top:10px;
+  }
+  .note{
+    font-size:14px;
+    color:#444;
+    border-top:1px solid var(--line);
+    padding-top:28px;
+    margin-top:8px;
+  }
+
+  /* Transparency */
+  .transparency-section{padding:56px 0;}
+  .transparency-section h2{font-size:26px;font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+  .transparency-section > .wrap > p{font-size:14.5px;color:#444;max-width:560px;line-height:1.6;margin:0 0 30px;}
+  .example-flag{
+    display:inline-block;
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:#946200;
+    background:#fff6e0;
+    border:1px solid #f0d585;
+    padding:5px 10px;
+    border-radius:4px;
+    margin-bottom:14px;
+  }
+  .example-note{
+    font-size:13.5px;
+    color:var(--gray);
+    font-style:italic;
+    margin:20px 0 0;
+    max-width:560px;
+    line-height:1.6;
+  }
+  .given-box{
+    border:1px solid var(--black);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 28px;
+    margin-bottom:24px;
+  }
+  .given-box span:first-child{font-size:15px;color:#333;}
+  .given-box span:last-child{font-size:24px;font-weight:800;color:var(--pink);}
+  .cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  .card{
+    border:1px solid var(--line);
+    padding:18px 20px;
+  }
+  .tag{
+    display:inline-block;
+    font-size:11px;
+    font-weight:700;
+    color:var(--pink);
+    letter-spacing:0.03em;
+    border:1px solid var(--pink);
+    padding:2px 8px;
+    border-radius:3px;
+    margin-bottom:12px;
+  }
+  .card h4{font-size:15px;font-weight:600;margin:0 0 8px;}
+  .card .amount{font-size:16px;font-weight:800;}
+
+  /* CTA banner */
+  .cta-banner{padding:72px 0;text-align:center;}
+  .cta-banner .target{
+    font-size:13px;
+    font-weight:700;
+    color:var(--pink);
+    margin-bottom:14px;
+  }
+  .cta-banner h2{
+    font-size:28px;
+    font-weight:800;
+    margin:0 0 4px;
+    letter-spacing:-0.01em;
+  }
+  .cta-banner .btn{margin-top:26px;}
+  .insta-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--pink);
+    font-size:14px;
+    font-weight:600;
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
+  .insta-cta:hover{color:#e0206a;}
+  .insta-cta-icon{
+    width:14px;
+    height:14px;
+    border:1.5px solid var(--pink);
+    border-radius:4px;
+    position:relative;
+    display:inline-block;
+    flex-shrink:0;
+  }
+  .insta-cta-icon::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:5px;
+    height:5px;
+    border:1.5px solid var(--pink);
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:26px 0;
+  }
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:14px;
+  }
+  .footer-links{display:flex;gap:28px;color:var(--gray);}
+
+  @media (max-width:760px){
+    .wrap{padding:0 20px;}
+
+    .nav-links{
+      display:none;
+      position:absolute;
+      top:100%;
+      left:0;
+      right:0;
+      background:#fff;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0;
+      border-bottom:1px solid var(--line);
+      box-shadow:0 8px 16px rgba(0,0,0,0.06);
+      z-index:20;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{
+      width:100%;
+      padding:14px 20px;
+      opacity:1;
+      border-bottom:1px solid var(--line);
+    }
+    .nav-links a:last-child{border-bottom:none;}
+    .nav-toggle{display:block;}
+
+    .mission{padding:44px 0 28px;}
+    .mission h1{font-size:30px;}
+    .mission p{font-size:15px;}
+    .cta-row{flex-direction:column;align-items:stretch;gap:14px;}
+    .cta-row .btn{width:100%;text-align:center;}
+    .cta-row .link-underline{text-align:center;}
+
+    .stat-section{padding:36px 0;}
+    .stat-box{padding:26px 20px 22px;}
+    .slider-readout .amount{font-size:38px;}
+    .slider-readout{gap:8px;}
+
+    .picture-section{padding:44px 0 28px;}
+    .picture-title{font-size:26px;margin-bottom:28px;}
+    .heart-caption{font-size:13.5px;padding:0 8px;}
+
+    .how-section{padding:48px 0 28px;}
+    .how-section h2{font-size:24px;}
+    .how-grid{grid-template-columns:1fr;gap:32px;}
+    .video-box{max-width:280px;margin:0 auto;}
+
+    .transparency-section{padding:36px 0;}
+    .transparency-section h2{font-size:22px;}
+    .given-box{flex-direction:column;align-items:flex-start;gap:6px;padding:18px 20px;}
+    .given-box span:last-child{font-size:22px;}
+    .cards{grid-template-columns:1fr;}
+
+    .cta-banner{padding:48px 0;}
+    .cta-banner h2{font-size:22px;}
+    .cta-banner .btn{width:100%;}
+
+    .footer-row{flex-direction:column;gap:14px;text-align:center;}
+    .footer-links{flex-wrap:wrap;justify-content:center;gap:16px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">Sub<span>4luv</span></div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#mission">Mission</a>
+      <a href="#how">How it works</a>
+      <a href="#transparency">Transparency</a>
+      <a class="give" href="#how">Give your free sub</a>
+      <a class="insta-link" href="https://www.instagram.com/sub4luvv/" target="_blank" rel="noopener">Follow on Instagram</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+
+<section class="mission" id="mission">
+  <div class="wrap">
+    <h1>Our mission</h1>
+    <p>To educate people about their free benefits that can fund projects that help people who really need it. We strive to build a community that takes advantage of online media and turn it into real world impact.</p>
+    <p>If you've never used Twitch: Twitch is a live streaming site. If you pay for Amazon Prime, part of what you're already paying for is one free subscription to a Twitch channel every month. Most people never use it, so it just sits there unused. Sub4luv is a channel. Give it your free sub instead and $2.25 goes toward real world support for people who need it, and it costs you nothing.</p>
+    <div class="cta-row">
+      <button class="btn" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">Give your free sub</button>
+      <a class="link-underline" href="#transparency">See where it goes</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="stat-section">
+  <div class="wrap">
+    <div class="stat-box">
+      <div class="stat-box-top">How can we do this?</div>
+      <p class="desc">Over 200 million people already have Amazon Prime. If we could get just a small part of that number to give their free sub, it would make a real difference. Drag the slider to see how much a group that size could raise in a year.</p>
+      <div class="slider-block">
+        <div class="slider-readout">
+          <span class="amount" id="sliderAmount">$135,000</span>
+          <span class="label">raised every year</span>
+        </div>
+        <div class="slider-sub"><strong id="sliderSubs">5,000</strong> people giving their free sub each month</div>
+        <input type="range" class="subs-slider" id="subsSlider" min="0" max="20000" step="100" value="5000">
+        <div class="slider-scale"><span>0</span><span>20,000 subs</span></div>
+        <p class="slider-note">That's about <span id="sliderPct">0.0025%</span> of the 200 million+ people who already have Amazon Prime. Value per free sub: $2.25 a month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="picture-section">
+  <div class="wrap heart-wrap">
+    <div style="align-self:flex-start;">
+      <div class="picture-eyebrow">The full picture</div>
+      <div class="picture-title">$10,000 <span class="accent">/ month</span></div>
+    </div>
+    <svg id="heart-svg" viewBox="0 0 640 600" xmlns="http://www.w3.org/2000/svg"></svg>
+    <p class="heart-caption">Every dot is one free sub, worth $2.25. Alone it's nothing but together is everything.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="how-section" id="how">
+  <div class="wrap">
+    <h2>How to give your free sub</h2>
+    <p>No credit card involved, ever. You're just pointing a benefit you already have somewhere it can help.</p>
+    <div class="how-grid">
+      <div>
+        <div class="step">
+          <h3>1. Visit our Twitch page</h3>
+          <p>Head to twitch.tv/subs/sub4luvv, that's our channel's subscribe page.</p>
+          <a class="btn" href="https://www.twitch.tv/subs/sub4luvv" target="_blank" rel="noopener" style="display:inline-block;text-align:center;">Go to twitch.tv/subs/sub4luvv</a>
+        </div>
+        <div class="step">
+          <h3>2. Connect your Amazon Prime</h3>
+          <p>If Twitch and Amazon aren't linked yet, it'll ask you to log in and connect them. That's what unlocks your free sub.</p>
+        </div>
+        <div class="step">
+          <h3>3. Use your free sub</h3>
+          <p>Choose "Subscribe with Prime." Confirm it. No card is involved at any point, you're just using the free sub Prime already gives you.</p>
+        </div>
+        <p class="note">Doesn't auto renew monthly. Next time it's just one click, no need to redo the other steps. Follow us on Instagram for reminders and updates.</p>
+        <a class="insta-cta" href="https://www.instagram.com/sub4luvv/" target="_blank" rel="noopener" style="margin-top:10px;">
+          <span class="insta-cta-icon"></span> Follow us on Instagram
+        </a>
+      </div>
+      <div>
+        <div class="video-box">
+          <video class="walkthrough-video" controls playsinline preload="metadata" poster="">
+            <source src="walkthrough.mp4" type="video/mp4">
+            Your browser doesn't support embedded video.
+          </video>
+        </div>
+        <div class="video-caption">Watch the walkthrough</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="transparency-section" id="transparency">
+  <div class="wrap">
+    <h2>Transparency</h2>
+    <p>All spending of funds and how much money raised will be posted on our social media pages. Where the goods go will be shown on livestreams, so you can see exactly where your support goes.</p>
+    <div class="example-flag">Example only, not real figures yet</div>
+    <div class="given-box">
+      <span>Given out this month</span>
+      <span>$3,452.50</span>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <span class="tag">GROCERIES</span>
+        <h4>Eastside Pantry</h4>
+        <div class="amount">$412.50</div>
+      </div>
+      <div class="card">
+        <span class="tag">EDUCATION</span>
+        <h4>School supplies drive</h4>
+        <div class="amount">$1,180.00</div>
+      </div>
+      <div class="card">
+        <span class="tag">COMMUNITY</span>
+        <h4>Supporter giveaways</h4>
+        <div class="amount">$1,000.00</div>
+      </div>
+      <div class="card">
+        <span class="tag">HOLIDAY</span>
+        <h4>Christmas toys for underprivileged kids</h4>
+        <div class="amount">$860.00</div>
+      </div>
+    </div>
+    <p class="example-note">These numbers are a sample of what this section will look like once we're up and running. They are not the actual amount given out this month.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="cta-banner">
+  <div class="wrap">
+    <div class="target">Five thousand subs is the target</div>
+    <h2>Your sub is free.</h2>
+    <h2>What it funds isn't.</h2>
+    <button class="btn" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">Give your free sub</button>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="logo" style="font-size:16px;">Sub<span>4luv</span></div>
+    <div class="footer-links">
+      <a href="#mission">Mission</a>
+      <a href="#how">How it works</a>
+      <a href="#transparency">Transparency</a>
+      <a href="https://www.instagram.com/sub4luvv/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const slider = document.getElementById('subsSlider');
+  const amountEl = document.getElementById('sliderAmount');
+  const subsEl = document.getElementById('sliderSubs');
+  const pctEl = document.getElementById('sliderPct');
+  const PRIME_MEMBERS = 200000000;
+
+  function formatMoney(n){
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+
+  function updateSlider(){
+    const subs = parseInt(slider.value, 10);
+    const yearly = subs * 2.25 * 12;
+    const pct = (subs / PRIME_MEMBERS) * 100;
+    amountEl.textContent = formatMoney(yearly);
+    subsEl.textContent = subs.toLocaleString('en-US');
+    pctEl.textContent = pct < 0.0001 && pct > 0 ? '<0.0001%' : pct.toFixed(4) + '%';
+  }
+
+  if(slider){
+    slider.addEventListener('input', updateSlider);
+    updateSlider();
+  }
+})();
+
+(function(){
+  const svg = document.getElementById('heart-svg');
+  const ns = "http://www.w3.org/2000/svg";
+  const w = 640, h = 600;
+  const cx = w/2;
+
+  // Build a heart outline from the classic parametric heart curve.
+  const outline = [];
+  const STEPS = 200;
+  for(let i = 0; i <= STEPS; i++){
+    const t = (i / STEPS) * Math.PI * 2;
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
+    outline.push([x, y]);
+  }
+
+  // Figure out bounds so we can scale/center it in the viewBox.
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  outline.forEach(([x,y]) => {
+    minX = Math.min(minX, x); maxX = Math.max(maxX, x);
+    minY = Math.min(minY, y); maxY = Math.max(maxY, y);
+  });
+  const rawW = maxX - minX, rawH = maxY - minY;
+  const targetW = 460, targetH = 430;
+  const scale = Math.min(targetW / rawW, targetH / rawH);
+  const cy = 50 + (targetH / 2);
+
+  const polygon = outline.map(([x,y]) => [
+    cx + x * scale,
+    cy - y * scale // flip y: svg grows downward, heart formula grows upward
+  ]);
+
+  function pointInPolygon(px, py, poly){
+    let inside = false;
+    for(let i = 0, j = poly.length - 1; i < poly.length; j = i++){
+      const xi = poly[i][0], yi = poly[i][1];
+      const xj = poly[j][0], yj = poly[j][1];
+      const intersect = ((yi > py) !== (yj > py)) &&
+        (px < (xj - xi) * (py - yi) / (yj - yi) + xi);
+      if(intersect) inside = !inside;
+    }
+    return inside;
+  }
+
+  const spacing = 6;
+  const points = [];
+  for(let gx = cx - targetW/2 - 10; gx <= cx + targetW/2 + 10; gx += spacing){
+    for(let gy = cy - targetH/2 - 10; gy <= cy + targetH/2 + 30; gy += spacing){
+      if(pointInPolygon(gx, gy, polygon)){
+        points.push([gx, gy]);
+      }
+    }
+  }
+
+  // Pick the "you" dot somewhat near the middle of the heart, but not dead center.
+  let youIndex = 0;
+  let bestDist = Infinity;
+  const targetX = cx - targetW * 0.14;
+  const targetY = cy - targetH * 0.08;
+  points.forEach((p, i) => {
+    const d = Math.hypot(p[0] - targetX, p[1] - targetY);
+    if(d < bestDist){ bestDist = d; youIndex = i; }
+  });
+
+  points.forEach((p, i) => {
+    const c = document.createElementNS(ns, "circle");
+    c.setAttribute("cx", p[0]);
+    c.setAttribute("cy", p[1]);
+    c.setAttribute("r", i === youIndex ? 4.5 : 2.2);
+    c.setAttribute("fill", i === youIndex ? "#ff2d78" : "#d9d9d9");
+    svg.appendChild(c);
+  });
+
+  const you = points[youIndex];
+  const lineEndX = you[0] + 60;
+  const lineEndY = you[1] - 40;
+
+  const line = document.createElementNS(ns, "line");
+  line.setAttribute("x1", you[0]);
+  line.setAttribute("y1", you[1]);
+  line.setAttribute("x2", lineEndX);
+  line.setAttribute("y2", lineEndY);
+  line.setAttribute("stroke", "#ff2d78");
+  line.setAttribute("stroke-width", "1");
+  svg.appendChild(line);
+
+  const label = document.createElementNS(ns, "text");
+  label.setAttribute("x", lineEndX + 5);
+  label.setAttribute("y", lineEndY - 3);
+  label.setAttribute("fill", "#ff2d78");
+  label.setAttribute("font-size", "14");
+  label.setAttribute("font-weight", "700");
+  label.setAttribute("font-family", "-apple-system, sans-serif");
+  label.textContent = "you: $2.25";
+  svg.appendChild(label);
+})();
+
+(function(){
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  if(!toggle || !links) return;
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+  });
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => links.classList.remove('open'));
+  });
+})();
+</script>
+
+</body>
+</html>
