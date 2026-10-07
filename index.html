@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>sub4luv | Your free monthly Twitch sub</title>
+<meta name="description" content="Give your free monthly Twitch sub from Amazon Prime to sub4luv. We use 100% of it to give back to people in need.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website">
+<meta property="og:title" content="sub4luv | Your free monthly Twitch sub">
+<meta property="og:description" content="Give your free monthly Twitch sub from Amazon Prime to sub4luv. We use 100% of it to give back to people in need.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top"><a class="lg" href="#top">sub<b>4luv</b></a></header>
+
+<main class="stage vp" id="vp">
+ <section class="trk" id="renewal-tracker" data-tracker data-link="https://www.twitch.tv/subs/sub4luvv"
+  data-text-ready="Your free sub is ready." data-text-pending="Finish subscribing on Twitch." data-text-renew="A month has passed. Time to resubscribe." data-text-countdown="Your next free sub unlocks in">
+  <p class="st" data-tracker-status></p>
+  <div class="cd2" data-show-when="countdown" role="timer" hidden>
+   <div><b data-unit="days">00</b><span>days</span></div><div><b data-unit="hours">00</b><span>hours</span></div>
+  </div>
+  <div class="bar2" data-show-when="countdown" hidden><i data-tracker-progress></i></div>
+  <p class="sub" data-show-when="countdown" hidden>Resubscribe on <time data-tracker-next></time><span class="lh">. Less than an hour to go.</span></p>
+  <p class="sub sr" data-show-when="ready">Your 30-day countdown starts 5 minutes after you click.</p>
+  <p class="sub" data-show-when="pending">Your 30-day countdown starts automatically in <b data-pending-time>5:00</b>. You can close this tab.</p>
+  <p class="renew"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v5h-5"/></svg><span><b>Renew every month.</b> Your free Prime sub lasts one month, so you need to resubscribe every month. This page counts down to the day.</span></p>
+  <div class="go">
+   <button class="btn" id="sub-btn" type="button" data-label-ready="Get your free sub" data-label-pending="Open Twitch again" data-label-renew="Resubscribe" data-label-countdown="Open sub page"><span data-tracker-btn-label>Get your free sub</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+   <a class="lnk2" href="https://www.twitch.tv/subs/sub4luvv" target="_blank" rel="noopener">twitch.tv/subs/sub4luvv</a>
+   <a class="lnk2" href="https://ko-fi.com/sub4luv" target="_blank" rel="noopener">No Prime? Donate instead</a>
+   <button class="lnk" type="button" data-show-when="pending" data-tracker-cancel hidden>Start over</button>
+   <button class="lnk" type="button" data-tracker-dev data-tracker-reset hidden>Reset timer</button>
+  </div>
+ </section>
+ <ol class="steps" id="steps"></ol>
+ <div class="pane"><div class="ph"><div class="phone"><i class="bt b1"></i><i class="bt b2"></i><i class="bt b3"></i><i class="bt b4"></i><div class="scr"><div class="sb"><span>9:41</span><i class="isl"></i><span class="ico"><svg viewBox="0 0 18 12"><rect y="8" width="3" height="4" rx=".6"/><rect x="5" y="5.5" width="3" height="6.5" rx=".6"/><rect x="10" y="3" width="3" height="9" rx=".6"/><rect x="15" width="3" height="12" rx=".6"/></svg><svg viewBox="0 0 28 12"><rect x=".6" y=".6" width="23" height="10.8" rx="3" fill="none" stroke="#0B0710" stroke-width="1.2" opacity=".5"/><rect x="2.4" y="2.4" width="19.4" height="7.2" rx="1.8"/><rect x="25" y="4" width="2" height="4" rx="1" opacity=".5"/></svg></span></div><div class="view" id="scr"></div><i class="hb"></i></div></div>
+   <div class="pc"><button id="pp" aria-label="Pause or play"><svg viewBox="0 0 24 24"><path id="pi" d="M6 4h4v16H6zm8 0h4v16h-4z"/></svg></button><span id="pn">Step 1 of 4</span></div></div></div>
+</main>
+<section class="about" id="support">
+ <div class="syn">
+  <h2>Free benefits, real change.</h2>
+  <p>Prime comes with a free monthly Twitch sub. We turn those free subs into funds and give 100% back to people in need, and to our supporters.</p>
+ </div>
+ <div class="don">
+  <h3>No Prime? You can still help.</h3>
+  <p>Any amount helps us give back.</p>
+  <a class="btn" href="https://ko-fi.com/sub4luv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Donate on Ko-fi</a>
+ </div>
+</section>
+<footer>© 2026 sub4luv. It’s free, but what it funds isn’t.</footer>
+
+<noscript><p style="text-align:center;padding:24px">This page needs JavaScript for the countdown. You can still subscribe at <a href="https://www.twitch.tv/subs/sub4luvv">twitch.tv/subs/sub4luvv</a>.</p></noscript>
+
+<script src="js/tracker.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
